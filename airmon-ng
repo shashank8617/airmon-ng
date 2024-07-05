@@ -1,0 +1,104 @@
+Since your wireless interface (wlan0) is already in monitor mode, you can use wifite to scan for nearby WiFi networks and perform various wireless attacks.
+
+To proceed with scanning and interacting with WiFi networks, follow these steps:
+
+Update your package list and install the recommended tools:
+
+bash
+Copy code
+sudo apt update
+sudo apt install hcxdumptool hcxtools
+Run wifite to scan for networks:
+
+bash
+Copy code
+sudo wifite
+wifite will automatically scan for nearby WiFi networks and list them for you. Once the scan is complete, you can choose a network to target for further actions such as capturing handshakes or attempting to crack the network.
+
+Monitor the output:
+wifite will display the available WiFi networks, their signal strengths, and other relevant details. You can follow the prompts on the screen to select a network and proceed with the desired actions.
+
+Here is an example of what you might see:
+
+csharp
+Copy code
+   NUM ESSID                 CH   ENCR PWR  WPS?  CLIENT
+    1  YourNetwork            6   WPA2  55  No    1
+
+ [0-0]: select number of target (1): 1
+Follow the on-screen instructions to proceed with the specific attack or capture you wish to perform.
+
+If you encounter any issues or need further assistance, feel free to ask!
+                                                                                                                                                         
+┌──(root㉿hunter)-[~/rtl8812au]
+└─# sudo apt update
+sudo apt install hcxdumptool hcxtools
+
+Hit:1 http://http.kali.org/kali kali-rolling InRelease
+499 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Installing:                     
+  hcxdumptool hcxtools
+                                                                                                                                                           
+Summary:
+  Upgrading: 0, Installing: 2, Removing: 0, Not Upgrading: 499
+  Download size: 231 kB
+  Space needed: 1261 kB / 4937 MB available
+
+Get:2 http://http.kali.org/kali kali-rolling/main arm64 hcxtools arm64 6.2.7-2+b1 [158 kB]
+Ign:1 http://mirror.kku.ac.th/kali kali-rolling/main arm64 hcxdumptool arm64 6.3.1-1                                                                      
+Ign:1 http://mirror.kku.ac.th/kali kali-rolling/main arm64 hcxdumptool arm64 6.3.1-1
+Ign:1 http://mirror.kku.ac.th/kali kali-rolling/main arm64 hcxdumptool arm64 6.3.1-1
+Err:1 http://mirror.kku.ac.th/kali kali-rolling/main arm64 hcxdumptool arm64 6.3.1-1
+  Cannot initiate the connection to mirror.kku.ac.th:80 (2001:3c8:c108:2895::2). - connect (101: Network is unreachable) Could not connect to mirror.kku.ac.th:80 (202.28.95.174), connection timed out
+Fetched 158 kB in 39s (4101 B/s)
+Error: Failed to fetch http://mirror.kku.ac.th/kali/pool/main/h/hcxdumptool/hcxdumptool_6.3.1-1_arm64.deb  Cannot initiate the connection to mirror.kku.ac.th:80 (2001:3c8:c108:2895::2). - connect (101: Network is unreachable) Could not connect to mirror.kku.ac.th:80 (202.28.95.174), connection timed out
+Error: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+                                                                                            
+
+ChatGPT
+It seems that the package hcxdumptool couldn't be fetched from the mirror due to connectivity issues. You can try a few different approaches to resolve this issue:
+
+Update the package list and retry the installation:
+
+bash
+Copy code
+sudo apt update
+sudo apt install hcxdumptool hcxtools
+Try with the --fix-missing option:
+
+bash
+Copy code
+sudo apt-get update --fix-missing
+sudo apt-get install hcxdumptool hcxtools
+Change the package mirror:
+You can change the package mirror to a different one. Open the sources list file and replace the current mirror with a different one. Here’s how you can do it:
+
+bash
+Copy code
+sudo nano /etc/apt/sources.list
+Replace the current mirror URLs with a different mirror, for example:
+
+plaintext
+Copy code
+deb http://http.kali.org/kali kali-rolling main non-free contrib
+Save the file and run the update and install commands again:
+
+bash
+Copy code
+sudo apt update
+sudo apt install hcxdumptool hcxtools
+Manual download and installation:
+If changing mirrors doesn't work, you can manually download the hcxdumptool package from a different source and install it. Download the .deb file from a reliable source and install it using dpkg.
+
+Here is how you can do it:
+
+bash
+Copy code
+wget http://http.kali.org/kali/pool/main/h/hcxdumptool/hcxdumptool_6.3.1-1_arm64.deb
+sudo dpkg -i hcxdumptool_6.3.1-1_arm64.deb
+sudo apt install -f
+After you have installed hcxdumptool and hcxtools, you can use wifite to scan for nearby WiFi networks.
+
+bash
+Copy code
+sudo wifite
